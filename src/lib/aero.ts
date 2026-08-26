@@ -153,10 +153,10 @@ export const HEIGHT = 1000;
 export const PIECES: AeroPiece[] = Array.from({ length: 120 }, (_, i) => {
   const seed = 1337 + i * 7919;
   const rnd = mulberry(seed);
-  const style = STYLES[i % STYLES.length];
-  const palette = PALETTES[Math.floor(rnd() * PALETTES.length)];
-  const title = `${NAMES_A[Math.floor(rnd() * NAMES_A.length)]} ${
-    NAMES_B[Math.floor(rnd() * NAMES_B.length)]
+  const style = STYLES[i % STYLES.length]!;
+  const palette = PALETTES[Math.floor(rnd() * PALETTES.length)]!;
+  const title = `${NAMES_A[Math.floor(rnd() * NAMES_A.length)]!} ${
+    NAMES_B[Math.floor(rnd() * NAMES_B.length)]!
   } ${String(i + 1).padStart(3, "0")}`;
   return {
     id: i + 1,
@@ -171,7 +171,7 @@ export const PIECES: AeroPiece[] = Array.from({ length: 120 }, (_, i) => {
 function paletteFor(seed: number): Palette {
   const rnd = mulberry(seed);
   rnd();
-  return PALETTES[Math.floor(rnd() * PALETTES.length)];
+  return PALETTES[Math.floor(rnd() * PALETTES.length)]!;
 }
 
 function bubble(
