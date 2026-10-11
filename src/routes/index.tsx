@@ -263,12 +263,14 @@ function Index() {
                 <button
                   onClick={async () => {
                     setBusy(true);
-                    if (activePiece) await downloadPiece(activePiece, activeSvg);
-                    else {
+                    if (activePiece) {
+                      await downloadPiece(activePiece, activeSvg);
+                    } else {
                       try {
                         await downloadPlace(activePlace!);
+                        toast.success(`Downloaded ${activePlace!.title}`);
                       } catch {
-                        /* toast handled in PlaceCard-free path below */
+                        toast.error("Could not download that one — try again.");
                       }
                     }
                     setBusy(false);
